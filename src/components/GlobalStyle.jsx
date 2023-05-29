@@ -1,4 +1,7 @@
-@import-normalize; /* bring in normalize.css styles */
+import 'normalize.css'; /* bring in normalize.css styles */
+import { createGlobalStyle } from 'styled-components';
+
+export const GlobalStyle = createGlobalStyle`
 
 body {
   margin: 0;
@@ -13,3 +16,11 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+h2 {
+    padding-left: 20px;
+}
+img {
+    width: 300px;
+    margin: 10px;
+}
+`;
