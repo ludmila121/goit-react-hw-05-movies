@@ -39,13 +39,7 @@ export default function MoviesDetailsPage() {
                     <h3>Overview</h3>
                     <p>{movie.overview}</p>
                     <h3>Genres</h3>
-                    <ul>
-                        {movie.genres.map(({id, name}) => {
-                            <li key={id} >
-                                {name}
-                            </li>
-                        })}
-                    </ul>
+                    <p>{movie.genres?.map(({ name }) => name).join(', ')}</p>
                 </div>
             </MovieCard>
         )}
