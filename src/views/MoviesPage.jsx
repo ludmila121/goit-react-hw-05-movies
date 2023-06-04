@@ -2,7 +2,7 @@ import MoviesList from 'components/MoviesList';
 import { useEffect, useState } from 'react';
 import { useLocation, useSearchParams } from 'react-router-dom';
 import { fetchSearchMovies } from 'services/api';
-import handlSubmit from './handlSubmit/handleSubmit';
+//import handlSubmit from './handlSubmit/handleSubmit';
 
 export default function SearchMovies() {
   const [query, setQuery] = useState('');
@@ -28,7 +28,11 @@ export default function SearchMovies() {
     fetchMovies();
   }, [searchParams]);
 
-  /* const handlSubmit = e => {
+  const handlChange = e => {
+    setQuery(e.currentTarget.value);
+  };
+
+  const handlSubmit = e => {
     e.preventDefault();
     const currentQuery = query.trim();
     if (!currentQuery) {
@@ -36,7 +40,7 @@ export default function SearchMovies() {
     }
     setSearchParams({ query: currentQuery });
     setQuery('');
-  }; */
+  };
 
   return (
     <>
