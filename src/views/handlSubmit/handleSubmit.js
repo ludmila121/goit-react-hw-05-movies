@@ -1,10 +1,11 @@
 import { useSearchParams } from 'react-router-dom';
 import SearchMovies from '/src/views/MoviesPage.jsx';
 import { useState } from 'react';
+import MoviesList from 'components/MoviesList/MoviesList';
 
 SearchMovies(() => {
   const [query, setQuery] = useState('');
-  const [searchParams, setSearchParams] = useSearchParams();
+  const setSearchParams = useSearchParams();
 
   const handlChange = e => {
     setQuery(e.currentTarget.value);
@@ -18,6 +19,14 @@ SearchMovies(() => {
     setSearchParams({ query: currentQuery });
     setQuery('');
   };
+  return (
+    <>
+      <form onSubmit={handlSubmit}>
+        <input type="text" value={query} onChange={handlChange}></input>
+        <button type="submit">Search</button>
+      </form>
+    </>
+  );
 });
 
-export default handlSubmit;
+export default SearchMovies;

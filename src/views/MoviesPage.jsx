@@ -1,13 +1,11 @@
-import MoviesList from 'components/MoviesList';
 import { useEffect, useState } from 'react';
 import { useLocation, useSearchParams } from 'react-router-dom';
 import { fetchSearchMovies } from 'services/api';
-//import handlSubmit from './handlSubmit/handleSubmit';
 
 export default function SearchMovies() {
-  const [query, setQuery] = useState('');
-  const [searchParams, setSearchParams] = useSearchParams();
-  const [movies, setMovies] = useState(null);
+  const setQuery = useState('');
+  const searchParams = useSearchParams();
+  const setMovies = useState(null);
   const location = useLocation();
 
   useEffect(() => {
@@ -31,24 +29,25 @@ export default function SearchMovies() {
   const handlChange = e => {
     setQuery(e.currentTarget.value);
   };
-
-  const handlSubmit = e => {
-    e.preventDefault();
-    const currentQuery = query.trim();
-    if (!currentQuery) {
-      return alert('Please enter a valid request!');
-    }
-    setSearchParams({ query: currentQuery });
-    setQuery('');
-  };
-
-  return (
-    <>
-      <form onSubmit={handlSubmit}>
-        <input type="text" value={query} onChange={handlChange}></input>
-        <button type="submit">Search</button>
-      </form>
-      {movies && <MoviesList movies={movies} url={''} location={location} />}
-    </>
-  );
 }
+
+//   const handlSubmit = e => {
+//     e.preventDefault();
+//     const currentQuery = query.trim();
+//     if (!currentQuery) {
+//       return alert('Please enter a valid request!');
+//     }
+//     setSearchParams({ query: currentQuery });
+//     setQuery('');
+//   };
+
+//   return (
+//     <>
+//       <form onSubmit={handlSubmit}>
+//         <input type="text" value={query} onChange={handlChange}></input>
+//         <button type="submit">Search</button>
+//       </form>
+//       {movies && <MoviesList movies={movies} url={''} location={location} />}
+//     </>
+//   );
+// }
