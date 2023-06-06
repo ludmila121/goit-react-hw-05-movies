@@ -1,17 +1,17 @@
+import MoviesList from 'components/MoviesList/MoviesList';
+import { SearchForm } from 'components/SearchForm/SearchForm';
 import { useEffect, useState } from 'react';
-import { useLocation, useSearchParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 import { fetchSearchMovies } from 'services/api';
 
 export default function SearchMovies() {
-  const setQuery = useState('');
-  const searchParams = useSearchParams();
-  const setMovies = useState(null);
-  const location = useLocation();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [movies, setMovies] = useState(null);
 
   useEffect(() => {
-    if (!searchParams.get('query')) {
-      return;
-    }
+    const query = searchParams.get('query');
+    if (!query) return;
+
     async function fetchMovies() {
       try {
         const response = await fetchSearchMovies(searchParams);
@@ -26,28 +26,13 @@ export default function SearchMovies() {
     fetchMovies();
   }, [searchParams]);
 
-  const handlChange = e => {
-    setQuery(e.currentTarget.value);
+  const handlSubmit = query => {
+    setSearchParams({ query });
   };
+  return (
+    <>
+      <SearchForm onSubmit={handlSubmit} />
+      {movies && <MoviesList movies={movies} />}
+    </>
+  );
 }
-
-//   const handlSubmit = e => {
-//     e.preventDefault();
-//     const currentQuery = query.trim();
-//     if (!currentQuery) {
-//       return alert('Please enter a valid request!');
-//     }
-//     setSearchParams({ query: currentQuery });
-//     setQuery('');
-//   };
-
-//   return (
-//     <>
-//       <form onSubmit={handlSubmit}>
-//         <input type="text" value={query} onChange={handlChange}></input>
-//         <button type="submit">Search</button>
-//       </form>
-//       {movies && <MoviesList movies={movies} url={''} location={location} />}
-//     </>
-//   );
-// }

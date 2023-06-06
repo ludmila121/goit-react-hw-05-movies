@@ -9,14 +9,15 @@ export default function Cast() {
   const { movieId } = useParams();
 
   useEffect(() => {
-    (async function fetchActors() {
+    async function fetchActors() {
       try {
         const response = await fetchActorList(movieId);
         setActorsList(response);
       } catch (error) {
         console.error(error);
       }
-    })();
+    }
+    fetchActors();
   }, [movieId]);
   return (
     <>

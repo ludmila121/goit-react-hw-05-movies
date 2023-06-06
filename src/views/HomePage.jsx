@@ -1,11 +1,9 @@
 import MoviesList from 'components/MoviesList';
 import { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
 import { fetchFilms } from 'services/api';
 
 export default function HomePage() {
   const [movies, setMovies] = useState(null);
-  const location = useLocation();
 
   useEffect(() => {
     async function fetchMovies() {

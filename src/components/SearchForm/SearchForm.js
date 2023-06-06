@@ -1,11 +1,7 @@
-import { useSearchParams } from 'react-router-dom';
-import SearchMovies from '/src/views/MoviesPage.jsx';
 import { useState } from 'react';
-import MoviesList from 'components/MoviesList/MoviesList';
 
-SearchMovies(() => {
+export const SearchForm = ({ onSubmit }) => {
   const [query, setQuery] = useState('');
-  const setSearchParams = useSearchParams();
 
   const handlChange = e => {
     setQuery(e.currentTarget.value);
@@ -16,7 +12,7 @@ SearchMovies(() => {
     if (!currentQuery) {
       return alert('Please enter a valid request!');
     }
-    setSearchParams({ query: currentQuery });
+    onSubmit({ query });
     setQuery('');
   };
   return (
@@ -27,6 +23,6 @@ SearchMovies(() => {
       </form>
     </>
   );
-});
+};
 
-export default SearchMovies;
+export default SearchForm;
