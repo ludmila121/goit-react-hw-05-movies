@@ -12,7 +12,7 @@ export const SearchForm = ({ onSubmit }) => {
     if (!currentQuery) {
       return alert('Please enter a valid request!');
     }
-    onSubmit({ query });
+    onSubmit(query);
     setQuery('');
   };
   return (
